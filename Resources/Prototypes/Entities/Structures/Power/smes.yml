@@ -195,8 +195,10 @@
     snapCardinals: true
     layers:
     - state: ninjasmes
+      sprite: _DeadSpace/Structures/Machines/ninja_smes.rsi
     - state: ninjasmes-unshaded
       shader: unshaded
+      sprite: _DeadSpace/Structures/Machines/ninja_smes.rsi
     - map: [ "enum.SmesVisualLayers.Charge" ]
       state: "smes-og1"
       shader: unshaded
@@ -210,10 +212,12 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       visible: false
       state: ninjasmes-open
+      sprite: _DeadSpace/Structures/Machines/ninja_smes.rsi
     - map: ["MaintenancePanel-Unshaded"]
       visible: false
       state: ninjasmes-unshaded-open
       shader: unshaded
+      sprite: _DeadSpace/Structures/Machines/ninja_smes.rsi
   - type: Battery
     maxCharge: 32000000
     startingCharge: 32000000
