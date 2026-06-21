@@ -1262,37 +1262,35 @@
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnActivate
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/_DeadSpace/Misc/mambo-laugh.ogg
       params:
-        volume: -5
+        volume: -10
   - type: MeleeWeapon
     wideAnimationRotation: 180
-    attackRate: 1
+    attackRate: 0.75
     soundHit:
       path: /Audio/_DeadSpace/Misc/mambo-laugh.ogg
+      params:
+        volume: -5
     damage:
       types:
         Blunt: 0
+  - type: ContainerFill
+    containers:
+      stash:
+      - ChemistryEmptyVialSmall
 
 - type: entity
   parent: BasePlushie
@@ -1307,34 +1305,28 @@
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnActivate
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/_DeadSpace/Misc/mambo-laugh.ogg
       params:
-        volume: -5
+        volume: -10
   - type: MeleeWeapon
     wideAnimationRotation: 180
-    attackRate: 1
+    attackRate: 0.75
     soundHit:
       path: /Audio/_DeadSpace/Misc/mambo-laugh.ogg
+      params:
+        volume: -5
     damage:
       types:
         Blunt: 0
@@ -1352,34 +1344,28 @@
   - type: EmitSoundOnUse
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: Edible
     requiresSpecialDigestion: true
     useSound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnActivate
     sound:
       path: /Audio/_DeadSpace/Misc/mambo.ogg
-      params:
-        volume: -5
   - type: EmitSoundOnCollide
     sound:
       path: /Audio/_DeadSpace/Misc/mambo-laugh.ogg
       params:
-        volume: -5
+        volume: -10
   - type: MeleeWeapon
     wideAnimationRotation: 180
-    attackRate: 1
+    attackRate: 0.75
     soundHit:
       path: /Audio/_DeadSpace/Misc/mambo-laugh.ogg
+      params:
+        volume: -5
     damage:
       types:
         Blunt: 0
