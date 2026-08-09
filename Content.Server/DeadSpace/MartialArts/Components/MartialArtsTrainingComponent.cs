@@ -128,6 +128,21 @@ public sealed partial class CQCParams // Список переменных, ко
 
     [DataField]
     public SoundSpecifier? HitSoundForStunAtack;
+
+    [DataField]
+    public string DamageTypeForBlindAtack = "Blunt";
+
+    [DataField]
+    public int HitDamageForBlindAtack = 8;
+
+    [DataField]
+    public TimeSpan BlindnessTime = TimeSpan.FromSeconds(4);
+
+    [DataField]
+    public string TemporaryBlindnessKey = "TemporaryBlindness";
+
+    [DataField]
+    public string TemporaryBlindnessComponent = "TemporaryBlindness";
 }
 
 [RegisterComponent]

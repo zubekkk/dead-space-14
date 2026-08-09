@@ -19,6 +19,7 @@ using Content.Shared.DeadSpace.MartialArts.CQC;
 using Content.Shared.Actions;
 using Content.Shared.Speech.Muting;
 using Robust.Shared.Timing;
+using Content.Shared.StatusEffect;
 using Content.Shared.DeadSpace.MartialArts.CQC.Components;
 
 namespace Content.Server.DeadSpace.MartialArts.CQC;
@@ -37,6 +38,7 @@ public sealed class CQCSystem : CQCSharedSystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly StatusEffectsSystem _status = default!;
 
     private readonly HashSet<EntityUid> _receivers = new();
     public override void Initialize()
@@ -45,6 +47,7 @@ public sealed class CQCSystem : CQCSharedSystem
 
         SubscribeLocalEvent<CQCComponent, CQCPowerPunchEvent>(OnPowerPunchAction);
         SubscribeLocalEvent<CQCComponent, CQCMuteEvent>(OnMutePunchAction);
+        SubscribeLocalEvent<CQCComponent, CQCBlindPunchEvent>(OnBlindPunchAction);
         SubscribeLocalEvent<CQCComponent, CQCRelaxEvent>(OnRelaxAction);
         SubscribeLocalEvent<CQCComponent, MeleeHitEvent>(OnMeleeHitEvent);
         SubscribeLocalEvent<CQCComponent, CQCConcentrationEvent>(CQCConcentration);
@@ -90,6 +93,16 @@ public sealed class CQCSystem : CQCSharedSystem
             return;
 
         SelectCombo(ent, CQCList.MuteAttack);
+
+        args.Handled = true;
+    }
+
+    private void OnBlindPunchAction(Entity<CQCComponent> ent, ref CQCBlindPunchEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        SelectCombo(ent, CQCList.BlindAttack);
 
         args.Handled = true;
     }
@@ -151,6 +164,11 @@ public sealed class CQCSystem : CQCSharedSystem
                 muted.MuteEndTime = _timing.CurTime + ent.Comp.Params.ParalyzeTimeMuteAtack;
                 DamageHit(hitEntity, ent.Comp.Params.DamageTypeForMuteAtack, ent.Comp.Params.HitDamageForMuteAtack, ent.Comp.Params.IgnoreResist, out _);
                 _stamina.TakeStaminaDamage(hitEntity, ent.Comp.Params.StaminaDamageMuteAtack);
+                break;
+
+            case CQCList.BlindAttack:
+                _status.TryAddStatusEffect(hitEntity, ent.Comp.Params.TemporaryBlindnessKey, ent.Comp.Params.BlindnessTime, false, ent.Comp.Params.TemporaryBlindnessComponent);
+                DamageHit(hitEntity, ent.Comp.Params.DamageTypeForBlindAtack, ent.Comp.Params.HitDamageForBlindAtack, ent.Comp.Params.IgnoreResist, out _);
                 break;
         }
         ent.Comp.SelectedCombo = null;

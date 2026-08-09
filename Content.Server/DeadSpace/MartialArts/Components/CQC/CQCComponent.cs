@@ -33,6 +33,7 @@ public sealed partial class CQCComponent : Component
         "ActionMutedCQCAttack",
         "ActionRelaxCQC",
         "ActionCQCStepPunch",
+        "ActionCQCBlindPunch"
     };
 
     [DataField]
@@ -65,4 +66,5 @@ public enum CQCList
 {
     PowerPunch,
     MuteAttack,
+    BlindAttack,
 }

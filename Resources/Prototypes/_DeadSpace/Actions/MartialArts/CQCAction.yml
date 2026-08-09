@@ -43,6 +43,22 @@
     event: !type:CQCStepPunchEvent {}
 
 - type: entity
+  id: ActionCQCBlindPunch
+  name: Пальцы в глаза
+  description: Мощный удар по ногам противника, который сбивает всех с ног на секунду вокруг вас.
+  components:
+  - type: Action
+    icon:
+      sprite: _DeadSpace/Actions/cqc_actions.rsi
+      state: trip_punch
+    useDelay: 5
+    priority: -6
+  - type: InstantAction
+    event: !type:CQCBlindPunchEvent {}
+  - type: AutoShootGun
+    enabled: true
+
+- type: entity
   id: ActionRelaxCQC
   name: Расслабление
   description: Отмена всех эффектов на удар.
