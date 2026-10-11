@@ -1,0 +1,191 @@
+- type: entity
+  id: SpiderFoot
+  name: spider foot
+  components:
+  - type: Physics
+    bodyType: Kinematic
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      foot:
+        shape: !type:PhysShapeCircle
+          radius: 0.3
+        hard: true
+        layer:
+        - MobLayer
+        mask: []
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: SpiderFoot
+  - type: RequireProjectileTarget
+  - type: Clickable
+    bounds:
+      all: "-0.3,-0.3,0.3,0.3"
+
+- type: entity
+  id: MobBossSpider
+  name: паук
+  description: паук
+  suffix: Mango19
+  components:
+  - type: InteractionOutline
+  - type: Clickable
+  - type: ComplexInteraction
+  - type: DoAfter
+  - type: Examiner
+  - type: Eye
+  - type: ContentEye
+  - type: MindContainer
+  - type: BlockMovement
+    blockInteraction: false
+  - type: Sprite
+    sprite: _DeadSpace/MangoSpiderBoss/spider_body.rsi
+    drawdepth: OverMobs
+    layers: 
+    - state: main
+    - state: main-unshaded
+      shader: unshaded
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: OnGround
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 1.25
+        density: 3500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: SpiderMarkerFollow
+    speed: 2.5
+    turnSpeed: 3
+    stopDistance: 0.1
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: SpiderLegs
+    boneLengths: [ 1.0, 0.7, 0.7 ]
+    boneVisuals:
+    - layers:
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/upper_leg.rsi
+          state: main
+        #scale: 0.3, 1.4
+        #shader: unshaded
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/upper_leg.rsi
+          state: main-unshaded
+        #scale: 0.3, 1.4
+        shader: unshaded
+    - layers:
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/lower_leg.rsi
+          state: main
+        #scale: 0.3, 1.4
+        #shader: unshaded
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/lower_leg.rsi
+          state: main-unshaded
+        #scale: 0.3, 1.4
+        shader: unshaded
+    - layers:
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/lower_leg.rsi
+          state: main
+        #scale: 0.3, 1.4
+        #shader: unshaded
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/lower_leg.rsi
+          state: main-unshaded
+        #scale: 0.3, 1.4
+        shader: unshaded
+    footVisual:
+      layers:
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/foot.rsi
+          state: main
+        #scale: 0.3, 1.4
+        #shader: unshaded
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/foot.rsi
+          state: main-unshaded
+        #scale: 0.3, 1.4
+        shader: unshaded
+    stepThreshold: 0.7
+    stepDuration: 0.3
+    footstepSound:
+      collection: FootstepThud
+    lookahead: 0.25
+    maxLookaheadOffset: 0.5
+    minFootGap: 0.6
+    footDamageShare: 0.3
+    legs:
+    # Правые
+    - position: "0.5,-0.75"
+      rest: "1.6,-2.4"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.5,-0.5"
+      rest: "1.9,-1.5"
+      group: 1
+      legMaxHealth: 40
+    - position: "0.45,-0.2"
+      rest: "1.9,0"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.35,0"
+      rest: "1.6,1"
+      group: 1
+      legMaxHealth: 40
+    # Левые
+    - position: "-0.5,-0.75"
+      rest: "-1.6,-2.4"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.5,-0.5"
+      rest: "-1.9,-1.5"
+      group: 0
+      legMaxHealth: 40
+    - position: "-0.45,-0.2"
+      rest: "-1.9,0"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.35,0"
+      rest: "-1.6,1"
+      group: 0
+      legMaxHealth: 40
+
+- type: entity
+  id: SpiderMarker
+  name: marker
+  save: false
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+    scale: 1, 1
+    drawdepth: Overlays
+
+- type: entity
+  id: SpiderDebugHipMarker
+  parent: SpiderMarker
+  save: false
+  components:
+  - type: Sprite
+    scale: 0.5, 0.5
+
+- type: entity
+  id: SpiderDebugRestMarker
+  parent: SpiderMarker
+  save: false
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: green
+    scale: 0.5, 0.5
