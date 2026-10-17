@@ -21,6 +21,9 @@
   - type: Clickable
     bounds:
       all: "-0.3,-0.3,0.3,0.3"
+  - type: Tag
+    tags:
+    - SpiderMissilesBlacklist
 
 - type: entity
   id: MobBossSpider
@@ -36,6 +39,9 @@
   - type: Eye
   - type: ContentEye
   - type: MindContainer
+  - type: Tag
+    tags:
+    - SpiderMissilesBlacklist
   - type: BlockMovement
     blockInteraction: false
   - type: Sprite
@@ -45,6 +51,19 @@
     - state: main
     - state: main-unshaded
       shader: unshaded
+    - map: [ "missiles" ]
+      sprite: _DeadSpace/MangoSpiderBoss/spider_missiles.rsi
+      state: wait
+      loop: false
+  - type: GenericVisualizer
+    visuals: 
+      enum.SpiderBossMissiles.Animation:
+        missiles:
+          Idle: {state: wait}
+          Firing: {state: open}
+          Starting: {state: start}
+          Closing: {state: close}
+  - type: Appearance
   - type: Physics
     bodyType: KinematicController
     bodyStatus: OnGround
@@ -64,6 +83,44 @@
     speed: 2.5
     turnSpeed: 3
     stopDistance: 0.1
+  - type: SpiderMissilesLauncher
+    missilesStartLaunchSound:
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+    missilesCloseSound:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    startLauncherTime: 1
+    closeLauncherTime: 1
+    missileLaunchInterval: 0.75
+    missileLaunchCount: 4
+    napalmMissileLaunchCount: 4
+    missilesEffects:
+    - prototype: SpiderTestMissileEffectFlash
+      offset: "0.5, 1.4"
+      rotation: 50
+    - prototype: SpiderTestMissileEffectFlash
+      offset: "-0.5, 1.4"
+      rotation: 140
+    - prototype: SpiderTestMissileEffectNapalm2
+      offset: "0.5, 1.4"
+      rotation: -40
+      parentToLauncher: false
+    - prototype: SpiderTestMissileEffectNapalm2
+      offset: "-0.5, 1.4"
+      rotation: 50
+      parentToLauncher: false
+    napalmMissilesEffects:
+    - prototype: SpiderTestMissileEffectFlash
+      offset: "0.5, 1.4"
+      rotation: 50
+    - prototype: SpiderTestMissileEffectFlash
+      offset: "-0.5, 1.4"
+      rotation: 140
+    - prototype: SpiderTestMissileEffectNapalm2
+      offset: "0.5, 1.4"
+      rotation: 50
+    - prototype: SpiderTestMissileEffectNapalm2
+      offset: "-0.5, 1.4"
+      rotation: 140
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -189,3 +246,41 @@
     sprite: Markers/cross.rsi
     state: green
     scale: 0.5, 0.5
+
+- type: entity
+  id: SpiderMissileMarker
+  parent: SpiderMarker
+  save: false
+  components:
+  - type: SpiderMissileMarker
+    radius: 6
+    attachDuration: 3
+    spawnDelay: 1
+    deleteDelay: 1
+    spawnPrototype: SpiderTestMissileEffectNapalm
+    blacklist:
+      tags:
+      - SpiderMissilesBlacklist
+
+- type: entity
+  id: SpiderNapalmMissileMarker
+  save: false
+  components:
+  - type: Sprite
+    sprite: _DeadSpace/MangoSpiderBoss/marker.rsi
+    layers: 
+    - state: marker
+      shader: unshaded
+      scale: 1.5, 1.5
+    drawdepth: BelowMobs
+    offset: "0.0,-0.5"
+    noRot: true
+  - type: SpiderMissileMarker
+    radius: 6
+    attachDuration: 3
+    spawnDelay: 1
+    deleteDelay: 1
+    spawnPrototype: SpiderTestMissileEffectNapalm
+    blacklist:
+      tags:
+      - SpiderMissilesBlacklist

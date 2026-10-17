@@ -1,0 +1,196 @@
+- type: entity
+  id: MobBossSpiderCensored
+  name: паук
+  description: паук
+  suffix: Censored
+  components:
+  - type: InteractionOutline
+  - type: Clickable
+  - type: ComplexInteraction
+  - type: DoAfter
+  - type: Examiner
+  - type: Eye
+  - type: ContentEye
+  - type: MindContainer
+  - type: Tag
+    tags:
+    - SpiderMissilesBlacklist
+  - type: BlockMovement
+    blockInteraction: false
+  - type: Sprite
+    sprite: _DeadSpace/MangoSpiderBoss/censored_body.rsi
+    drawdepth: OverMobs
+    layers:
+    - state: base
+  - type: Appearance
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: OnGround
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 1.25
+        density: 3500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: SpiderMarkerFollow
+    speed: 2.5
+    turnSpeed: 3
+    stopDistance: 0.1
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: SpiderLegs
+    boneLengths: [ 0.8, 0.8, 0.8 ]
+    boneVisuals:
+    - layers:
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/censored_leg.rsi
+          state: main
+        scale: 1, 0.7
+    - layers:
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/censored_leg.rsi
+          state: main
+        scale: 1, 0.7
+    - layers:
+      - sprite:
+          sprite: _DeadSpace/MangoSpiderBoss/censored_leg.rsi
+          state: main
+        scale: 1, 0.7
+    stepThreshold: 0.7
+    stepDuration: 0.3
+    footstepSound:
+      collection: FootstepThud
+    lookahead: 0.25
+    maxLookaheadOffset: 0.5
+    minFootGap: 0.4
+    footDamageShare: 0.3
+    legs:
+    - position: "0.6,0.0"
+      rest: "2.6,0.0"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.59,0.12"
+      rest: "2.54,0.54"
+      group: 1
+      legMaxHealth: 40
+    - position: "0.55,0.24"
+      rest: "2.38,1.06"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.49,0.35"
+      rest: "2.1,1.53"
+      group: 1
+      legMaxHealth: 40
+    - position: "0.4,0.45"
+      rest: "1.74,1.93"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.3,0.52"
+      rest: "1.3,2.25"
+      group: 1
+      legMaxHealth: 40
+    - position: "0.19,0.57"
+      rest: "0.8,2.47"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.06,0.6"
+      rest: "0.27,2.59"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.06,0.6"
+      rest: "-0.27,2.59"
+      group: 0
+      legMaxHealth: 40
+    - position: "-0.19,0.57"
+      rest: "-0.8,2.47"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.3,0.52"
+      rest: "-1.3,2.25"
+      group: 0
+      legMaxHealth: 40
+    - position: "-0.4,0.45"
+      rest: "-1.74,1.93"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.49,0.35"
+      rest: "-2.1,1.53"
+      group: 0
+      legMaxHealth: 40
+    - position: "-0.55,0.24"
+      rest: "-2.38,1.06"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.59,0.12"
+      rest: "-2.54,0.54"
+      group: 0
+      legMaxHealth: 40
+    - position: "-0.6,0.0"
+      rest: "-2.6,0.0"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.59,-0.12"
+      rest: "-2.54,-0.54"
+      group: 0
+      legMaxHealth: 40
+    - position: "-0.55,-0.24"
+      rest: "-2.38,-1.06"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.49,-0.35"
+      rest: "-2.1,-1.53"
+      group: 0
+      legMaxHealth: 40
+    - position: "-0.4,-0.45"
+      rest: "-1.74,-1.93"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.3,-0.52"
+      rest: "-1.3,-2.25"
+      group: 0
+      legMaxHealth: 40
+    - position: "-0.19,-0.57"
+      rest: "-0.8,-2.47"
+      group: 1
+      legMaxHealth: 40
+    - position: "-0.06,-0.6"
+      rest: "-0.27,-2.59"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.06,-0.6"
+      rest: "0.27,-2.59"
+      group: 1
+      legMaxHealth: 40
+    - position: "0.19,-0.57"
+      rest: "0.8,-2.47"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.3,-0.52"
+      rest: "1.3,-2.25"
+      group: 1
+      legMaxHealth: 40
+    - position: "0.4,-0.45"
+      rest: "1.74,-1.93"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.49,-0.35"
+      rest: "2.1,-1.53"
+      group: 1
+      legMaxHealth: 40
+    - position: "0.55,-0.24"
+      rest: "2.38,-1.06"
+      group: 0
+      legMaxHealth: 40
+    - position: "0.59,-0.12"
+      rest: "2.54,-0.54"
+      group: 1
+      legMaxHealth: 40

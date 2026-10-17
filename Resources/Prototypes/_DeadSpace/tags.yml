@@ -423,6 +423,9 @@
   id: SpaceCarpCube
 
 - type: Tag
+  id: SpiderMissilesBlacklist
+
+- type: Tag
   id: SubMachineGunC20r
 
 - type: Tag

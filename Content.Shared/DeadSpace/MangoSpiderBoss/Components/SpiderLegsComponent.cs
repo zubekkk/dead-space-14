@@ -18,13 +18,9 @@ public sealed partial class SpiderLegsComponent : Component
     [DataField]
     public List<float> BoneLengths = new() { 1.0f, 1.4f };
 
-    // Визуал сегментов ноги по умолчанию (по одному на сегмент) — рисуется только клиентом.
-    // Отдельная нога может переопределить его через SpiderLegData.Bones.
     [DataField]
     public List<SpiderBoneVisual> BoneVisuals = new();
 
-    // Визуал ступни по умолчанию. Рисуется фут-сущностью (её спрайт краснеет при попадании).
-    // Отдельная нога может переопределить его через SpiderLegData.FootVisual.
     [DataField]
     public SpiderBoneVisual FootVisual = new();
 
@@ -38,8 +34,8 @@ public sealed partial class SpiderLegsComponent : Component
     public int
     FabrikIterations = 8;
 
-    // Только сервер, по сети не ходит
-    [ViewVariables] public FabrikChain[]? Chains;
+    [ViewVariables]
+    public FabrikChain[]? Chains;
 
     [DataField]
     public float StepThreshold = 1.5f;
@@ -47,20 +43,17 @@ public sealed partial class SpiderLegsComponent : Component
     [DataField]
     public float StepDuration = 0.25f;
 
-    // Звук шага при посадке ноги. Если задан, играется от каждой ступни отдельно.
     [DataField]
     public SoundSpecifier? FootstepSound;
 
-    // Громкость шага в дБ, добавляется к громкости звука.
     [DataField]
     public float FootstepVolume = 0f;
 
-    // Разброс громкости/тона шага, если у звука не задан свой.
     [DataField]
     public float FootstepVariation = 0.15f;
 
-    // Только сервер: время последнего озвученного шага для каждой ноги, чтобы не дублировать звук.
-    [ViewVariables] public TimeSpan[]? LastFootstep;
+    [ViewVariables]
+    public TimeSpan[]? LastFootstep;
 
     [DataField]
     public float Lookahead = 0.25f;
@@ -102,15 +95,12 @@ public sealed partial class SpiderLegData
     [DataField]
     public List<float>? BoneLengths;
 
-    // Необязательное переопределение визуала сегментов именно для этой ноги.
     [DataField]
     public List<SpiderBoneVisual>? Bones;
 
-    // Необязательное переопределение визуала ступни именно для этой ноги.
     [DataField]
     public SpiderBoneVisual? FootVisual;
 
-    // Невидимая фут-сущность, несущая фикстуру для попаданий.
     [DataField]
     public NetEntity Foot = NetEntity.Invalid;
 
@@ -133,7 +123,6 @@ public sealed partial class SpiderLegData
     public TimeSpan StepStart;
 }
 
-// Описание спрайта кости/ступни как набора слоёв. Спрайты ног существуют только на клиенте.
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class SpiderBoneVisual
 {
@@ -141,7 +130,6 @@ public sealed partial class SpiderBoneVisual
     public List<SpiderLegVisualLayer> Layers = new();
 }
 
-// Один слой визуала: SpriteSpecifier (RSI+state или текстура) плюс смещение/масштаб.
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class SpiderLegVisualLayer
 {
@@ -157,7 +145,6 @@ public sealed partial class SpiderLegVisualLayer
     [DataField]
     public bool Visible = true;
 
-    // Id ShaderPrototype (например "unshaded"). Пусто — шейдер по умолчанию.
     [DataField]
     public string? Shader;
 }

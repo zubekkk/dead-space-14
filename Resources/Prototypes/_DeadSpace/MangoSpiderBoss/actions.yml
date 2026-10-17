@@ -1,0 +1,27 @@
+- type: entity
+  parent: BaseAction
+  id: MissileLaunchAction
+  name: "[color=red]Залп ракет[/color]"
+  description: Запускает залп ракет из пусковой установки.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: xenoborg-guided-missile-module
+  - type: InstantAction
+    event: !type:LaunchSpiderMissilesActionEvent {}
+
+- type: entity
+  parent: BaseAction
+  id: NapalmMissileLaunchAction
+  name: "[color=orange]Залп напалмовых ракет[/color]"
+  description: Запускает залп напалмовых ракет из пусковой установки.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: xenoborg-rocket-module
+  - type: InstantAction
+    event: !type:LaunchSpiderNapalmMissilesActionEvent {}

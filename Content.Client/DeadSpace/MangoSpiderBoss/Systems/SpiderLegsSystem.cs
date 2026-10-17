@@ -37,11 +37,9 @@ public sealed class SpiderLegsSystem : SharedSpiderLegsSystem
 
     public override void Update(float frameTime)
     {
-        var now = _timing.CurTime;
         var query = EntityQueryEnumerator<SpiderLegsComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            SimulateLegs((uid, comp), now);
             UpdateSpider((uid, comp));
         }
     }

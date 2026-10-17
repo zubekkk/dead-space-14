@@ -1,0 +1,102 @@
+# Тестовые прототипы для SpiderMissilesLauncherSystem.
+# SpiderMissilesLauncherTest можно заспавнить в игре (спавн-меню или консоль spawn)
+# и проверить запуск ракет без необходимости использовать полноценного босса.
+
+- type: entity
+  id: SpiderTestMissileEffectFlash
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.25
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _DeadSpace/MangoSpiderBoss/flash.rsi
+      state: flash
+      loop: false
+  - type: EffectVisuals
+  - type: AnimationPlayer
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpiderTestMissileEffectNapalm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.63
+  - type: Sprite
+    drawdepth: Effects
+    offset: "0.0,3.0"
+    noRot: true
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _DeadSpace/MangoSpiderBoss/spider_missiles_napalm.rsi
+      state: landing
+      loop: false
+  - type: EffectVisuals
+  - type: TriggerOnSpawn
+  - type: TimerTrigger
+    examinable: false
+    popup: null
+    delay: 0.55
+    keyOut: timer
+  - type: ExplosionOnTrigger
+    keysIn:
+    - timer
+    maxTileIntensity: 7
+    intensitySlope: 5
+    explosionType: Default
+    totalIntensity: 40
+    maxTileBreak: 0
+  - type: AnimationPlayer
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpiderTestMissileEffectNapalm2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.63
+  - type: Sprite
+    drawdepth: Effects
+    offset: "0.0,3.0"
+    rotation: 180
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: _DeadSpace/MangoSpiderBoss/spider_missiles_napalm.rsi
+      state: landing
+      loop: false
+  - type: EffectVisuals
+  - type: AnimationPlayer
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpiderTestNapalmMissileEffect
+  name: тестовая напалмовая ракета паука
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+    - shader: unshaded
+      sprite: Effects/fire.rsi
+      state: fire
+      loop: false
+  - type: EffectVisuals
+  - type: AnimationPlayer
+  - type: Tag
+    tags:
+    - HideContextMenu

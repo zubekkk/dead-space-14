@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "sprite by wanton19 (discord) for Space Station 14 server Мёртвый Космос",
+  "size": {
+    "x": 60,
+    "y": 50
+  },
+  "states": [
+    {
+      "name": "marker",
+      "delays":[
+        [
+          0.25,
+          0.25,
+          0.25
+        ]
+      ]
+    }
+  ]
+}
